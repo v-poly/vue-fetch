@@ -1,0 +1,8 @@
+{
+  "root": true,
+  "extends": "vue",
+  "globals": {
+    "Vue": true,
+    "define": true
+  }
+}
