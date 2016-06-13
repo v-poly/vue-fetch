@@ -4,11 +4,14 @@
   "description": "A fetch plugin for vue using fetch api.",
   "main": "index.js",
   "devDependencies": {
+    "babel-preset-es2015-rollup": "^1.1.1",
     "eslint": "^2.11.1",
-    "eslint-config-vue": "^1.0.3"
+    "eslint-config-vue": "^1.0.3",
+    "rollup-plugin-babel": "^2.5.1",
+    "rollup-plugin-json": "^2.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c rollup.config.js"
   },
   "repository": {
     "type": "git",
@@ -24,5 +27,8 @@
   "bugs": {
     "url": "https://github.com/v-poly/vue-fetch/issues"
   },
-  "homepage": "https://github.com/v-poly/vue-fetch#readme"
+  "homepage": "https://github.com/v-poly/vue-fetch#readme",
+  "dependencies": {
+    "rollup": "^0.31.1"
+  }
 }

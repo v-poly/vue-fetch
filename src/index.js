@@ -1,4 +1,5 @@
 import { warn } from './util'
+import { version } from '../package.json'
 
 const _fetch = window.fetch
 
@@ -53,6 +54,9 @@ class VueFetch {
     })
   }
 }
+
+// Version
+VueFetch.version = version
 
 /* Installation */
 VueFetch.installed = false
