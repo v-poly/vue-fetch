@@ -1,3 +1,9 @@
+/*!
+ * vue-fetch v0.1.0
+ * https://github.com/v-poly/vue-fetch
+ * Released under the MIT License.
+ */
+
 'use strict';
 
 /**
@@ -12,8 +18,6 @@ function warn(msg) {
     console.error('[vue-router] ' + msg);
   }
 }
-
-var version = "0.1.0";
 
 var classCallCheck = function (instance, Constructor) {
   if (!(instance instanceof Constructor)) {
@@ -99,11 +103,11 @@ var VueFetch = function () {
 }();
 
 // Version
-
-
-VueFetch.version = version;
+// VueFetch.version = version
 
 /* Installation */
+
+
 VueFetch.installed = false;
 
 /**
