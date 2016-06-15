@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>VueFetch Demo</title>
+  <link rel="stylesheet" href="./index.css">
+  <script type="text/javascript" src="../node_modules/vue/dist/vue.js"></script>
+  <script type="text/javascript" src="../dist/vue-fetch.js"></script>
+</head>
+<body>
+  <div class="row">
+    <div class="column">
+      <h2>Get: /users</h2>
+      <pre><code>{{result.get1|json}}</code></pre>
+    </div>
+    <div class="column">
+      <h2>Get: /users/1</h2>
+      <pre><code>{{result.get2|json}}</code></pre>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <h2>Post: /users/1</h2>
+      <pre><code>{{result.post|json}}</code></pre>
+    </div>
+    <div class="column">
+      <h2>Delete: /users/1</h2>
+      <pre><code>{{result.delete|json}}</code></pre>
+    </div>
+  </div>
+  <div class="row">
+    <div class="column">
+      <h2>Put: /users/1</h2>
+      <pre><code>{{result.put|json}}</code></pre>
+    </div>
+    <div class="column">
+      <h2>Patch: /users/1</h2>
+      <pre><code>{{result.patch|json}}</code></pre>
+    </div>
+  </div>
+  <script type="text/javascript" src="./index.js"></script>
+</body>
+</html>

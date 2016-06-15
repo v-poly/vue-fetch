@@ -9,10 +9,12 @@
     "eslint-config-vue": "^1.0.3",
     "rollup-plugin-babel": "^2.5.1",
     "rollup-plugin-json": "^2.0.0",
-    "uglify-js": "^2.6.2"
+    "uglify-js": "^2.6.2",
+    "vue": "^1.0.24"
   },
   "scripts": {
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "demo": "http-server ./ -p 9001"
   },
   "repository": {
     "type": "git",
