@@ -1,6 +1,5 @@
 import { warn } from './util'
-
-const _fetch = window.fetch
+import * as Http from './http'
 
 // late bind during install
 let Vue
@@ -37,21 +36,6 @@ class VueFetch {
     // Vue instances
     this.app = null
   }
-
-  get (url) {
-    return _fetch(url)
-  }
-
-  post (url, data) {
-    return _fetch(url, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: 'POST',
-      body: JSON.stringify(data)
-    })
-  }
 }
 
 // Version
@@ -59,6 +43,13 @@ class VueFetch {
 
 /* Installation */
 VueFetch.installed = false
+
+/**
+ *
+ */
+VueFetch.get = Http.get
+
+VueFetch.post = Http.post
 
 /**
  * Installation interface.
@@ -73,6 +64,17 @@ VueFetch.install = function (externalVue) {
   }
   Vue = externalVue
   VueFetch.installed = true
+
+  /**
+   * Export $fetch to vue instance
+   */
+  Object.defineProperties(Vue.prototype, {
+    $fetch: {
+      get () {
+        return Http
+      }
+    }
+  })
 }
 
 // auto install

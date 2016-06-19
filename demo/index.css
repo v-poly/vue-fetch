@@ -7,10 +7,12 @@ html {
 }
 
 body {
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-flow: column;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
 }
 
 .row {
@@ -23,6 +25,13 @@ body {
 
 .row > .column {
   flex: 1;
-  padding: 4rem;
+  padding: 1rem;
   border: 1px solid #3c4049;
+  overflow: auto;
+}
+
+h2 {
+  font-size: 1.25rem;
+  margin: 0;
+  line-height: 1.5rem;
 }

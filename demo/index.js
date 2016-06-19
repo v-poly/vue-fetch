@@ -4,7 +4,7 @@ var VueFetch
 Vue.use(VueFetch)
 
 var api = {
-  root: 'http://jsonplaceholder.typicode.com/usrs',
+  root: 'http://jsonplaceholder.typicode.com/users',
   get: '',
   post: '/posts',
   put: '/posts/1',
@@ -16,7 +16,7 @@ new Vue({
   el: 'body',
   data: {
     result: {
-      get1: [],
+      get1: {},
       get2: {},
       post: {},
       delete: {},
@@ -27,14 +27,18 @@ new Vue({
   methods: {
     get1: function () {
       var self = this
-      VueFetch.get(api.get).then(function (data) {
-        self.result.get1 = data
+      this.$fetch.get(api.root + api.get).then(function (data) {
+        data.json().then(function (json) {
+          self.result.get1 = json
+        })
       })
     },
     get2: function () {
       var self = this
-      VueFetch.get(api.get, '/1').then(function (data) {
-        self.result.get2 = data
+      this.$fetch.get(api.root + api.get + '/1').then(function (data) {
+        data.json().then(function (json) {
+          self.result.get2 = json
+        })
       })
     }
   },

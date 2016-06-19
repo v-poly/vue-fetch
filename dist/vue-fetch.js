@@ -23,31 +23,33 @@
     }
   }
 
+  var _fetch = window.fetch;
+
+  function get(url) {
+    return _fetch(url);
+  }
+
+  function post(url, data) {
+    return _fetch(url, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    });
+  }
+
+var Http = Object.freeze({
+    get: get,
+    post: post
+  });
+
   var classCallCheck = function (instance, Constructor) {
     if (!(instance instanceof Constructor)) {
       throw new TypeError("Cannot call a class as a function");
     }
   };
-
-  var createClass = function () {
-    function defineProperties(target, props) {
-      for (var i = 0; i < props.length; i++) {
-        var descriptor = props[i];
-        descriptor.enumerable = descriptor.enumerable || false;
-        descriptor.configurable = true;
-        if ("value" in descriptor) descriptor.writable = true;
-        Object.defineProperty(target, descriptor.key, descriptor);
-      }
-    }
-
-    return function (Constructor, protoProps, staticProps) {
-      if (protoProps) defineProperties(Constructor.prototype, protoProps);
-      if (staticProps) defineProperties(Constructor, staticProps);
-      return Constructor;
-    };
-  }();
-
-  var _fetch = window.fetch;
 
   // late bind during install
   var Vue = void 0;
@@ -68,43 +70,21 @@
    * ```
    */
 
-  var VueFetch = function () {
-    function VueFetch() {
-      var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+  var VueFetch = function VueFetch() {
+    var _ref = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-      var _ref$hashbang = _ref.hashbang;
-      var hashbang = _ref$hashbang === undefined ? true : _ref$hashbang;
-      classCallCheck(this, VueFetch);
+    var _ref$hashbang = _ref.hashbang;
+    var hashbang = _ref$hashbang === undefined ? true : _ref$hashbang;
+    classCallCheck(this, VueFetch);
 
-      /* istanbul ignore if */
-      if (!VueFetch.installed) {
-        throw new Error('Please install the VueFetch with Vue.use() before ' + 'creating an instance.');
-      }
-
-      // Vue instances
-      this.app = null;
+    /* istanbul ignore if */
+    if (!VueFetch.installed) {
+      throw new Error('Please install the VueFetch with Vue.use() before ' + 'creating an instance.');
     }
 
-    createClass(VueFetch, [{
-      key: 'get',
-      value: function get(url) {
-        return _fetch(url);
-      }
-    }, {
-      key: 'post',
-      value: function post(url, data) {
-        return _fetch(url, {
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          method: 'POST',
-          body: JSON.stringify(data)
-        });
-      }
-    }]);
-    return VueFetch;
-  }();
+    // Vue instances
+    this.app = null;
+  };
 
   // Version
   // VueFetch.version = version
@@ -113,6 +93,13 @@
 
 
   VueFetch.installed = false;
+
+  /**
+   *
+   */
+  VueFetch.get = get;
+
+  VueFetch.post = post;
 
   /**
    * Installation interface.
@@ -127,6 +114,17 @@
     }
     Vue = externalVue;
     VueFetch.installed = true;
+
+    /**
+     * Export $fetch to vue instance
+     */
+    Object.defineProperties(Vue.prototype, {
+      $fetch: {
+        get: function get() {
+          return Http;
+        }
+      }
+    });
   };
 
   // auto install
