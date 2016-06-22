@@ -25,20 +25,39 @@ function get(url) {
   return _fetch(url);
 }
 
-function post(url, data) {
+function _post(url, method, data) {
   return _fetch(url, {
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    method: 'POST',
+    method: method,
     body: JSON.stringify(data)
   });
 }
 
+function put(url, data) {
+  return _post(url, 'PUT', data);
+}
+
+function post(url, data) {
+  return _post(url, 'POST', data);
+}
+
+function patch(url, data) {
+  return _post(url, 'PATCH', data);
+}
+
+function del(url, data) {
+  return _post(url, 'DELETE', data);
+}
+
 var Http = Object.freeze({
   get: get,
-  post: post
+  put: put,
+  post: post,
+  patch: patch,
+  del: del
 });
 
 var classCallCheck = function (instance, Constructor) {
