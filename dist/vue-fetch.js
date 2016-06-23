@@ -25,10 +25,6 @@
 
   var _fetch = window.fetch;
 
-  function get(url) {
-    return _fetch(url);
-  }
-
   function _post(url, method, data) {
     return _fetch(url, {
       headers: {
@@ -40,29 +36,23 @@
     });
   }
 
-  function put(url, data) {
-    return _post(url, 'PUT', data);
-  }
-
-  function post(url, data) {
-    return _post(url, 'POST', data);
-  }
-
-  function patch(url, data) {
-    return _post(url, 'PATCH', data);
-  }
-
-  function del(url, data) {
-    return _post(url, 'DELETE', data);
-  }
-
-var Http = Object.freeze({
-    get: get,
-    put: put,
-    post: post,
-    patch: patch,
-    del: del
-  });
+  var Http = {
+    get: function get(url) {
+      return _fetch(url);
+    },
+    post: function post(url, data) {
+      return _post(url, 'POST', data);
+    },
+    put: function put(url, data) {
+      return _post(url, 'PUT', data);
+    },
+    patch: function patch(url, data) {
+      return _post(url, 'PATCH', data);
+    },
+    delete: function _delete(url, data) {
+      return _post(url, 'DELETE', data);
+    }
+  };
 
   var classCallCheck = function (instance, Constructor) {
     if (!(instance instanceof Constructor)) {
@@ -116,9 +106,9 @@ var Http = Object.freeze({
   /**
    *
    */
-  VueFetch.get = get;
+  VueFetch.get = Http.get;
 
-  VueFetch.post = post;
+  VueFetch.post = Http.post;
 
   /**
    * Installation interface.

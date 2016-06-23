@@ -1,5 +1,5 @@
 import { warn } from './util'
-import * as Http from './http'
+import Http from './http'
 
 // late bind during install
 let Vue

@@ -75,7 +75,7 @@ new Vue({
     },
     delete: function () {
       var self = this
-      this.$fetch.del(api.root + '/1')
+      this.$fetch.delete(api.root + '/1')
       .then(function (data) {
         data.json().then(function (json) {
           self.result.delete = json
