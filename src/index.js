@@ -1,5 +1,6 @@
 import { warn } from './util'
 import Http from './http'
+import AOP from './aop'
 
 // late bind during install
 let Vue
@@ -23,7 +24,7 @@ let Vue
 class VueFetch {
 
   constructor ({
-    hashbang = true
+    timeout = 5000
   } = {}) {
     /* istanbul ignore if */
     if (!VueFetch.installed) {
@@ -45,11 +46,14 @@ class VueFetch {
 VueFetch.installed = false
 
 /**
- *
+ * Global methods
  */
-VueFetch.get = Http.get
+const httpMethods = ['get', 'post', 'put', 'patch', 'post']
+httpMethods.forEach((method) => {
+  VueFetch[method] = Http[method]
+})
 
-VueFetch.post = Http.post
+AOP(VueFetch)
 
 /**
  * Installation interface.

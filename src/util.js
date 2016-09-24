@@ -7,6 +7,6 @@
 export function warn (msg) {
   /* istanbul ignore next */
   if (typeof console !== 'undefined') {
-    console.error('[vue-router] ' + msg)
+    console.error('[vue-fetch] ' + msg)
   }
 }

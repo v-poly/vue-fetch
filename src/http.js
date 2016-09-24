@@ -12,8 +12,8 @@ function _post (url, method, data) {
 }
 
 export default {
-  get (url) {
-    return _fetch(url)
+  get (url, data) {
+    return _post(url, 'GET', data)
   },
   post (url, data) {
     return _post(url, 'POST', data)
